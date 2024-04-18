@@ -11,7 +11,7 @@ variable "container_cpu" {
 
 variable "container_memory" {
   description = "Container memory"
-  default     = "8Gi"
+  default     = "4Gi"
 }
 
 variable "project_id" {
@@ -38,28 +38,12 @@ variable "repository" {
   default     = "mage-data-prep"
 }
 
-variable "docker_image" {
-  type        = string
-  description = "The docker image to deploy to Cloud Run."
-  default     = "mageai/mageai:latest"
-}
-variable "repo_id" {
-  type = string
-  default = "nz_traffic"
-  
-}
+# variable "docker_image" {
+#   type        = string
+#   description = "The docker image to deploy to Cloud Run."
+#   default     = "mageai/mageai:latest"
+# }
 
-variable "domain" {
-  description = "Domain name to run the load balancer on. Used if `ssl` is `true`."
-  type        = string
-  default     = ""
-}
-
-variable "ssl" {
-  description = "Run load balancer on HTTPS and provision managed certificate with provided `domain`."
-  type        = bool
-  default     = false
-}
 
 variable "credentials" {
   description = "credentials file path"
