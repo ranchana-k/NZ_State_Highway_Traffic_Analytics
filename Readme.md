@@ -8,7 +8,7 @@ This end-to-end pipeline provides daily traffic count across New Zealand State H
 Dataset is provided by NZ Transport Agency through [TMS daily traffic counts API](https://opendata-nzta.opendata.arcgis.com/datasets/NZTA::tms-daily-traffic-counts-api/about), together with [static SH traffic monitoring sites data](https://opendata-nzta.opendata.arcgis.com/datasets/NZTA::state-highway-traffic-monitoring-sites/about). 
 
 # 3. Tech Stack Overview and Workflow
-![Workflow](https://excalidraw.com/#json=M9GYkQykS6aCq7d05gtH2,AJv12zRKjNEWwpqS48zjoA)
+<img width="632" alt="workflow" src="https://github.com/ranchana-k/NZ_State_Highway_Traffic_Analytics/assets/68572758/bf755074-f1aa-421d-a748-610854779590">
 - Data Ingestion: 
     Used Mage.ai as the workflow orchestrator for batch processing the data by year month, retrieving data from API and keep it in Google Cloud Storage (data lake). Then, append the new data into bigquery (used in transformation) and run dbt models to production Bigquery table.
 - Data Storage: 
