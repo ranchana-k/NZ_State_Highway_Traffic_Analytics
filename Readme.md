@@ -29,13 +29,13 @@ Dataset is provided by NZ Transport Agency through [TMS daily traffic counts API
 - Install Terraform
 
 # 5. Project Setup
-    ## 5.1 Clone this git repo to a local folder
-    ## 5.2 Preparing Credentials
+## 5.1 Clone this git repo to a local folder
+## 5.2 Preparing Credentials
         1) Create a GCP project and enable [Service Usage API](https://console.cloud.google.com/apis/api/serviceusage.googleapis.com)
         2) Create a service account key with the role owner and create service account key as JSON file, rename it to `creds.json`
         3) Put service account credentials `creds.json` in `keys/` folder
         4) Run command `gcloud init` and `gcloud auth application-default login` to config email account and project_id then run `gcloud auth configure-docker`
-    ## 5.3 Push Container Image to Artifact registry (aka container registry)
+## 5.3 Push Container Image to Artifact registry (aka container registry)
         1) Go to [Artifact Registry Console](https://console.cloud.google.com/artifacts)
         2) Create a new repository as following:
         <img width="517" alt="repo1" src="https://github.com/ranchana-k/NZ_State_Highway_Traffic_Analytics/assets/68572758/efee5b56-ca03-44d6-a6b8-e4547ae69f66">
@@ -44,21 +44,21 @@ Dataset is provided by NZ Transport Agency through [TMS daily traffic counts API
             `docker build -t gcr.io/PROJECT_ID/REPOSITORY_NAME/IMAGE_NAME .`
         4) Push our container, run a command :
             `docker push gcr.io/PROJECT_ID/REPOSITORY_NAME/IMAGE_NAME`
-    ## 5.4 Prepare Environment Variables
+5.4 Prepare Environment Variables
         1) Edit `.dev` and save as `.env` (only 5 variables)
-       
+       ```
         TF_VAR_project_id=
         TF_VAR_region=
         TF_VAR_zone=
         TF_VAR_location=
         TF_VAR_docker_image=gcr.io/PROJECT_ID/REPOSITORY_NAME/IMAGE_NAME
-     
-    ## 5.5 Run Terraform
+     ```
+## 5.5 Run Terraform
         1) Navigate to folder `terraform`
         2) Run `terraform init`, `terraform plan` and then `terraform apply`
-    ## 5.6 Navigate to [cloud run](https://console.cloud.google.com/run?referrer=search&hl=en) then click cloud run servic http link to open a container service or click output link showed from 5.6
+## 5.6 Navigate to [cloud run](https://console.cloud.google.com/run?referrer=search&hl=en) then click cloud run servic http link to open a container service or click output link showed from 5.6
     <img width="433" alt="cloud run" src="https://github.com/ranchana-k/NZ_State_Highway_Traffic_Analytics/assets/68572758/ed0831d1-c343-4496-a211-0e31ae22fefe">
-    ## 5.7 Run a pipeline through Mage.ai
+## 5.7 Run a pipeline through Mage.ai
         1) Choose pipeline named `nz-traffic-count`
         2) Create Trigger
         <img width="551" alt="mage1" src="https://github.com/ranchana-k/NZ_State_Highway_Traffic_Analytics/assets/68572758/f795a145-3c62-4c05-a069-2f00d85bdafe">
