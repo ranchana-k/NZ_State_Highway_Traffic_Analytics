@@ -1,0 +1,11 @@
+# https://docs.getdbt.com/docs/core/connect-data-platform/profiles.yml
+nz_traffic:
+ target: dev
+ outputs:
+  dev:
+   type: bigquery
+   method: service-account
+   project: "{{ env_var('TF_VAR_project_id') }}"
+   dataset: "{{ env_var('TF_VAR_bq_dataset_name') }}"
+   threads: 1
+   keyfile: /home/src/keys/creds.json

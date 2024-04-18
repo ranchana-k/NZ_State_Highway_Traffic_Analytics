@@ -1,0 +1,10 @@
+version: 2
+sources:
+  - name: nz_traffic_raw
+    database: "{{ env_var('TF_VAR_project_id') }}"
+    schema: "{{ env_var('TF_VAR_bq_raw_dataset_name') }}"
+    tables:
+    - name: raw_traffic_count
+   
+
+    

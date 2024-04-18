@@ -1,0 +1,134 @@
+blocks:
+- all_upstream_blocks_executed: false
+  color: null
+  configuration:
+    dbt:
+      command: build
+    dbt_profile_target: ''
+    dbt_project_name: dbt/nz_traffic
+    disable_query_preprocessing: false
+    export_write_policy: append
+    file_source:
+      path: dbts/dbt_test.yaml
+    use_raw_sql: false
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: yaml
+  name: dbt_build_models
+  retry_config: null
+  status: executed
+  timeout: null
+  type: dbt
+  upstream_blocks:
+  - biqquery_raw
+  uuid: dbt_build_models
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - drop_duplicates
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: load monthly traffic
+  retry_config: null
+  status: updated
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: load_monthly_traffic
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - add_date
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: drop duplicates
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - load_monthly_traffic
+  uuid: drop_duplicates
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - upload_to_gcs
+  - biqquery_raw
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: add date
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - drop_duplicates
+  uuid: add_date
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - dbt_build_models
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: biqquery_raw
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - add_date
+  uuid: biqquery_raw
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: upload to gcs
+  retry_config: null
+  status: updated
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - add_date
+  uuid: upload_to_gcs
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2024-04-16 07:11:24.501442+00:00'
+data_integration: null
+description: null
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: nz_traffic_count
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags: []
+type: python
+uuid: nz_traffic_count
+variables_dir: /home/src/mage_data/nz_traffic
+widgets: []

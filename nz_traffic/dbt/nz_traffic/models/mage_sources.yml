@@ -1,0 +1,14 @@
+sources:
+- description: Dataframes Mage upstream blocks
+  loader: mage
+  name: mage_nz_traffic
+  schema: nz_highway_traffic
+  tables:
+  - description: Dataframe for block `biqquery_raw` of the `nz_traffic_count` mage
+      pipeline.
+    identifier: mage_nz_traffic_count_biqquery_raw
+    meta:
+      block_uuid: biqquery_raw
+      pipeline_uuid: nz_traffic_count
+    name: nz_traffic_count_biqquery_raw
+version: 2

@@ -1,0 +1,10 @@
+TF_VAR_project_id=PROJECT_ID
+TF_VAR_region=asia-southeast1
+TF_VAR_zone=asia-southeast1-a
+TF_VAR_location=asia-southeast1
+TF_VAR_docker_image=gcr.io/PROJECT_ID/REPOSITORY_NAME/IMAGE_NAME
+TF_VAR_bq_dataset_name=nz_highway_traffic
+TF_VAR_bq_raw_dataset_name=traffic_data
+TF_VAR_storage_bucket_name=nz-traffic-count
+GOOGLE_APPLICATION_CREDENTIALS=/home/src/keys/creds.json
+
