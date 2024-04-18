@@ -46,13 +46,13 @@ Dataset is provided by NZ Transport Agency through [TMS daily traffic counts API
             `docker push gcr.io/PROJECT_ID/REPOSITORY_NAME/IMAGE_NAME`
     5.5 Prepare Environment Variables
         1) Edit `.dev` and save as `.env` (only 5 variables)
-        ```
+       
         TF_VAR_project_id=
         TF_VAR_region=
         TF_VAR_zone=
         TF_VAR_location=
         TF_VAR_docker_image=gcr.io/PROJECT_ID/REPOSITORY_NAME/IMAGE_NAME
-        ```
+     
     5.6 Run Terraform
         1) Navigate to folder `terraform`
         2) Run `terraform init`, `terraform plan` and then `terraform apply`
