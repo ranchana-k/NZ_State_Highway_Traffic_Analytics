@@ -91,7 +91,7 @@ resource "google_cloud_run_v2_service" "default" {
       }
       env {
         name = "GOOGLE_APPLICATION_CREDENTIALS"
-        value = var.credentials
+        value = "/home/src/keys/creds.json"
       }
       ports {
         container_port = 6789
