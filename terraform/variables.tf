@@ -11,7 +11,7 @@ variable "container_cpu" {
 
 variable "container_memory" {
   description = "Container memory"
-  default     = "8Gi"
+  default     = "4Gi"
 }
 
 variable "project_id" {
