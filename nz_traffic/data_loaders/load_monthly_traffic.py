@@ -15,7 +15,7 @@ def load_data_from_api(*args, **kwargs):
     Template for loading data from API
     """
     main_url = 'https://services.arcgis.com/CXBb7LAjgIIdcsPt/arcgis/rest/services/TMS_Telemetry_Sites/FeatureServer/0/query?where='
-    year_range = [2022]
+    year_range = [2022,2023]
     data = []
     for year in year_range:
         for month in range(1,13):
