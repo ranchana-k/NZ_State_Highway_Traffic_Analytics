@@ -12,19 +12,19 @@ Dataset is provided by NZ Transport Agency through [TMS daily traffic counts API
 
 ## 3.1 Data Ingestion: 
     Used Mage.ai as the workflow orchestrator for batch processing the data. 
-    1. Retrieving data from API 
-    2. Keep it in Google Cloud Storage (data lake). 
-    3. Append the new data into bigquery (used in transformation) and 
-    4. Run dbt models to production Bigquery table.
+1. Retrieving data from API 
+2. Keep it in Google Cloud Storage (data lake). 
+3. Append the new data into bigquery (used in transformation) and 
+4. Run dbt models to production Bigquery table.
 ## 3.2 Data Storage: 
     Google Cloud Storage (GCS) was chosen as the primary data storage solution, ensuring data is securely stored and readily accessible.
 ## 3.3 Data Transformations: 
     dbt (Data Build Tool) was used to transform raw data into structured formats that are optimized (by partitioning and clustering) for analysis. 
     Transformation Steps:
-    1. joined traffic count data with monitoring sites data.
-    2. selected and adjust only fields used
-    3. partitioned by date as users need to select range of date interested 
-    4. clustered by Region as the state highway data often analysed by Region
+1. joined traffic count data with monitoring sites data.
+2. selected and adjust only fields used
+3. partitioned by date as users need to select range of date interested 
+4. clustered by Region as the state highway data often analysed by Region
 ## 3.4 Data Warehousing: 
     Used Google BigQuery to enables efficient data storage for transformed data and enhances querying capabilities. 
 ## 3.5 Data Visualization: 
