@@ -54,9 +54,9 @@ Terraform was used to provision and set up all google cloud infrastructure, ex. 
 <img width="338" alt="repo2" src="https://github.com/ranchana-k/NZ_State_Highway_Traffic_Analytics/assets/68572758/c8fd32d9-a08c-4c7f-8ab9-fa25f427c7c3">
 
 3) At root folder, run a command: (Please change values according yours.)
-    `docker build -t gcr.io/PROJECT_ID/REPOSITORY_NAME/IMAGE_NAME .`
+`docker build -t gcr.io/PROJECT_ID/REPOSITORY_NAME/IMAGE_NAME .`
 4) Push our container, run a command :
-     `docker push gcr.io/PROJECT_ID/REPOSITORY_NAME/IMAGE_NAME`
+`docker push gcr.io/PROJECT_ID/REPOSITORY_NAME/IMAGE_NAME`
 ## 5.4 Prepare Environment Variables
 1) Edit `.dev` and save as `.env` (only 5 variables)
 ```
@@ -70,7 +70,7 @@ TF_VAR_docker_image=gcr.io/PROJECT_ID/REPOSITORY_NAME/IMAGE_NAME
 1) Navigate to folder `terraform`
 2) Run `terraform init`, `terraform plan` and then `terraform apply`
    Terraform will create resources i.e. bigquery dataset, gcs storage bucket, cloud run service (for running pipeline on cloud) 
-## 5.6 [Navigate to cloud run](https://console.cloud.google.com/run?referrer=search&hl=en) then click cloud run servic http link to open a container service or click output link showed from 5.6
+## 5.6 [Navigate to cloud run](https://console.cloud.google.com/run?referrer=search&hl=en) then click cloud run service http link to open a container service or click output link showed in the CLI used to run 5.5
 
 <img width="433" alt="cloud run" src="https://github.com/ranchana-k/NZ_State_Highway_Traffic_Analytics/assets/68572758/ed0831d1-c343-4496-a211-0e31ae22fefe">
 
