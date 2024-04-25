@@ -55,10 +55,11 @@ Terraform was used to provision and set up all google cloud infrastructure, ex. 
 
 3) At root folder, run a command: (Please change values according yours.)
 
-`docker build -t gcr.io/PROJECT_ID/REPOSITORY_NAME/IMAGE_NAME .`
+   `docker build -t gcr.io/PROJECT_ID/REPOSITORY_NAME/IMAGE_NAME .`
+
 4) Push our container, run a command :
 
-`docker push gcr.io/PROJECT_ID/REPOSITORY_NAME/IMAGE_NAME`
+   `docker push gcr.io/PROJECT_ID/REPOSITORY_NAME/IMAGE_NAME`
 
 ## 5.4 Prepare Environment Variables
 1) Edit `.dev` and save as `.env` (only 5 variables)
