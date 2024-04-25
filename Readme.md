@@ -10,31 +10,40 @@ Dataset is provided by NZ Transport Agency through [TMS daily traffic counts API
 # 3. Tech Stack Overview and Workflow
 <img width="632" alt="workflow" src="https://github.com/ranchana-k/NZ_State_Highway_Traffic_Analytics/assets/68572758/bf755074-f1aa-421d-a748-610854779590">
 
-- Data Ingestion: 
-    Used Mage.ai as the workflow orchestrator for batch processing the data by year month, retrieving data from API and keep it in Google Cloud Storage (data lake). Then, append the new data into bigquery (used in transformation) and run dbt models to production Bigquery table.
-- Data Storage: 
-    Used Google Cloud Storage (GCS) as the primary data storage solution, ensuring data is securely stored and readily accessible.
-- Data Transformations: 
-    Used dbt (Data Build Tool) for transforming raw data into structured formats that are optimized for analysis. By joining traffic count data with monitoring sites data.
-- Data Warehousing: 
+## 3.1 Data Ingestion: 
+    Used Mage.ai as the workflow orchestrator for batch processing the data. 
+    - Retrieving data from API 
+    - Keep it in Google Cloud Storage (data lake). 
+    - Append the new data into bigquery (used in transformation) and 
+    - Run dbt models to production Bigquery table.
+## 3.2 Data Storage: 
+    Google Cloud Storage (GCS) was chosen as the primary data storage solution, ensuring data is securely stored and readily accessible.
+## 3.3 Data Transformations: 
+    dbt (Data Build Tool) was used to transform raw data into structured formats that are optimized (by partitioning and clustering) for analysis. 
+    Transformation Steps:
+      - joined traffic count data with monitoring sites data.
+      - selected and adjust only fields used
+      - partitioned by date as users need to select range of date interested 
+      - clustered by Region as the state highway data often analysed by Region
+## 3.4 Data Warehousing: 
     Used Google BigQuery to enables efficient data storage for transformed data and enhances querying capabilities. 
-- Data Visualization: 
+## 3.5 Data Visualization: 
     Used Looker Studio to visualize key metrics.
-- Cloud Infrastructure: 
-    Terraform is used to provision and set up all google cloud infrastructure.
-
-# 4. Prerequisites
+## 3.6 Cloud Infrastructure: 
+    Terraform was used to provision and set up all google cloud infrastructure, ex. cloud run service to run mage pipeline, Bigquery, Google Cloud Storage Bucket
+  
+# 5. Prerequisites
 - Install [gcloud SDK](https://cloud.google.com/sdk/docs/install)
 - Gmail account (free for 300 USD credit) 
 - Install Terraform
 
 # 5. Project Setup
 ## 5.1 Clone this git repo to a local folder
-`git clone`
+`git clone https://github.com/ranchana-k/NZ_State_Highway_Traffic_Analytics.git`
 ## 5.2 Preparing Credentials
  1) Create a GCP project and enable [Service Usage API](https://console.cloud.google.com/apis/api/serviceusage.googleapis.com)
  2) Create a service account key with the role owner and Storage Admin and create service account key as JSON file, rename it to `creds.json`
- 3) Put service account credentials `creds.json` in `keys/` folder
+ 3) Put service account credentials `creds.json` in `keys/` folder at the root project folder (<PROJECT_FOLDER_NAME>/keys/creds.json)
  4) Run command `gcloud init` and `gcloud auth application-default login` to config email account and project_id then run `gcloud auth configure-docker`
 ## 5.3 Push Container Image to Artifact registry (aka container registry)
  1) Go to [Artifact Registry Console](https://console.cloud.google.com/artifacts)
@@ -60,6 +69,7 @@ TF_VAR_docker_image=gcr.io/PROJECT_ID/REPOSITORY_NAME/IMAGE_NAME
 ## 5.5 Run Terraform
 1) Navigate to folder `terraform`
 2) Run `terraform init`, `terraform plan` and then `terraform apply`
+   Terraform will create resources i.e. bigquery dataset, gcs storage bucket, cloud run service (for running pipeline on cloud) 
 ## 5.6 [Navigate to cloud run](https://console.cloud.google.com/run?referrer=search&hl=en) then click cloud run servic http link to open a container service or click output link showed from 5.6
 
 <img width="433" alt="cloud run" src="https://github.com/ranchana-k/NZ_State_Highway_Traffic_Analytics/assets/68572758/ed0831d1-c343-4496-a211-0e31ae22fefe">
@@ -73,6 +83,7 @@ TF_VAR_docker_image=gcr.io/PROJECT_ID/REPOSITORY_NAME/IMAGE_NAME
 3) Select Run @once to trigger the whole pipeline
 
 # 6. Dashboard
+At first , I'd like to visualize the data with monitoring site (X,Y) coordinates found in SH_Traffic_Monitoring_Site. Unfortunately, they were not google map coordinates and probably belonged to an old version New Zealand standard map. Therefore, I can visualize by only region.
 
 [Dashboard](https://lookerstudio.google.com/reporting/223ca748-2fc2-47e1-b573-66b397fab61c/page/teOxD/edit)
 
