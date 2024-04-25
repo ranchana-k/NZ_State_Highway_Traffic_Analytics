@@ -54,9 +54,12 @@ Terraform was used to provision and set up all google cloud infrastructure, ex. 
 <img width="338" alt="repo2" src="https://github.com/ranchana-k/NZ_State_Highway_Traffic_Analytics/assets/68572758/c8fd32d9-a08c-4c7f-8ab9-fa25f427c7c3">
 
 3) At root folder, run a command: (Please change values according yours.)
+
 `docker build -t gcr.io/PROJECT_ID/REPOSITORY_NAME/IMAGE_NAME .`
 4) Push our container, run a command :
+
 `docker push gcr.io/PROJECT_ID/REPOSITORY_NAME/IMAGE_NAME`
+
 ## 5.4 Prepare Environment Variables
 1) Edit `.dev` and save as `.env` (only 5 variables)
 ```
